@@ -1,5 +1,6 @@
 package com.example.dormdash;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -7,10 +8,12 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -30,6 +33,8 @@ public class NewOrderActivity extends AppCompatActivity {
     CheckBox cheeseBorger;
     CheckBox bean;
     CheckBox doubleHamborger;
+    Button finalizeOrder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +48,16 @@ public class NewOrderActivity extends AppCompatActivity {
         cheeseBorger = findViewById(R.id.cheeseborger);
         bean = findViewById(R.id.beanBurger);
         doubleHamborger = findViewById(R.id.doubleBurger);
+        newOrder();
     }
 
     public void newOrder() {
-        if (hamborger.isChecked()) {
-
-        }
+        finalizeOrder = findViewById(R.id.finalizeOrder);
+        finalizeOrder.setOnClickListener(new View.OnClickListener() {
+            public void onClick(final View v) {
+                if (hamborger.isChecked()) {
+                }
+            }
+        });
     }
 }
