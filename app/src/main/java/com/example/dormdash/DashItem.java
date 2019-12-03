@@ -7,4 +7,10 @@ public class DashItem {
         price = setPrice;
         name = setName;
     }
+    public double getPrice() {
+        return price;
+    }
+    public String getName() {
+        return name;
+    }
 }
