@@ -84,8 +84,26 @@ public class NewOrderActivity extends AppCompatActivity {
         finalizeOrder = findViewById(R.id.finalizeOrder);
         finalizeOrder.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
-                if (hamborger.isChecked()) {
-
+                double priceTotal = 0;
+                if (hamborger.isChecked() || cheeseBorger.isChecked() || bean.isChecked() || doubleHamborger.isChecked()) {
+                    if (hamborger.isChecked()) {
+                        orderContents.add(new DashItem("Hamburger", 2.99));
+                    }
+                    if (cheeseBorger.isChecked()) {
+                        orderContents.add(new DashItem("cheese", 2.3));
+                    }
+                    if (bean.isChecked()) {
+                        orderContents.add(new DashItem("bean", 2.39));
+                    }
+                    if (doubleHamborger.isChecked()) {
+                        orderContents.add(new DashItem("2Hamburger", 7.99));
+                    }
+                    for (DashItem e : orderContents) {
+                        priceTotal += e.getPrice();
+                    }
+                    EditText e = findViewById(R.id.runningTotal);
+                    Double t = new Double(priceTotal);
+                    e.setText(t.toString());
                 }
             }
         });
