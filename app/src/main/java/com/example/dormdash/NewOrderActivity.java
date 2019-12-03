@@ -57,34 +57,12 @@ public class NewOrderActivity extends AppCompatActivity {
     }
 
     public void newOrder() {
-        double total = 0;
-        orderContents = new ArrayList<>(0);
-        if (hamborger.isChecked() || cheeseBorger.isChecked() || bean.isChecked() || doubleHamborger.isChecked()) {
-            if (hamborger.isChecked()) {
-                orderContents.add(new DashItem("Hamburger", 2.99));
-                hamborger.setChecked(false);
-            }
-            if (cheeseBorger.isChecked()) {
-                orderContents.add(new DashItem("cheese", 2.3));
-            }
-            if (bean.isChecked()) {
-                orderContents.add(new DashItem("bean", 2.39));
-            }
-            if (doubleHamborger.isChecked()) {
-                orderContents.add(new DashItem("2Hamburger", 7.99));
-            }
-            for (DashItem e : orderContents) {
-                total = e.getPrice();
-            }
-            EditText e = findViewById(R.id.runningTotal);
-            Double t = new Double(total);
-            e.setText(t.toString());
-            newOrder();
-        }
-        finalizeOrder = findViewById(R.id.finalizeOrder);
-        finalizeOrder.setOnClickListener(new View.OnClickListener() {
+
+        Button subtotal = findViewById(R.id.subtotal);
+        subtotal.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
-                double priceTotal = 0;
+                double priceTotal = 0.00;
+                orderContents = new ArrayList<>(0);
                 if (hamborger.isChecked() || cheeseBorger.isChecked() || bean.isChecked() || doubleHamborger.isChecked()) {
                     if (hamborger.isChecked()) {
                         orderContents.add(new DashItem("Hamburger", 2.99));
@@ -105,6 +83,13 @@ public class NewOrderActivity extends AppCompatActivity {
                     Double t = new Double(priceTotal);
                     e.setText(t.toString());
                 }
+            }
+        });
+
+        finalizeOrder = findViewById(R.id.finalizeOrder);
+        finalizeOrder.setOnClickListener(new View.OnClickListener() {
+            public void onClick(final View v) {
+                return;
             }
         });
     }

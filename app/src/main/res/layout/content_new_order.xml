@@ -25,6 +25,19 @@
         app:layout_constraintTop_toBottomOf="@+id/hamborger" />
 
     <Button
+        android:id="@+id/subtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="277dp"
+        android:layout_marginEnd="189dp"
+        android:text="Generate Subtotal"
+        app:layout_constraintBottom_toTopOf="@+id/runningTotal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hamborger" />
+
+    <Button
         android:id="@+id/finalizeOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
