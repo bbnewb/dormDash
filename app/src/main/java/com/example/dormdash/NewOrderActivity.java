@@ -40,7 +40,7 @@ public class NewOrderActivity extends AppCompatActivity {
 
     Button finalizeOrder;
 
-
+// and i oop
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
