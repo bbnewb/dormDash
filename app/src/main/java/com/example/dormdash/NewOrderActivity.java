@@ -124,7 +124,7 @@ public class NewOrderActivity extends AppCompatActivity {
                     }
 
                     // show the popup window
-                    // which view you pass in doesn't matter, it is only used for the window token
+                    // which view you pass in doesn't matter, it is only used for the window tolken
                     popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
 
                     // dismiss the popup window when touched
