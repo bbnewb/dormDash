@@ -13,10 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
@@ -75,7 +80,17 @@ public class NewOrderActivity extends AppCompatActivity {
                     }
                     if (doubleHamborger.isChecked()) {
                         orderContents.add(new DashItem("2Hamburger", 7.99));
+                    } else {
+                        orderContents.add(new DashItem("null", 0.00));
                     }
+                    for (DashItem e : orderContents) {
+                        priceTotal += e.getPrice();
+                    }
+                    EditText e = findViewById(R.id.runningTotal);
+                    Double t = new Double(priceTotal);
+                    e.setText(t.toString());
+                } else {
+                    orderContents.add(new DashItem("null", 0.00));
                     for (DashItem e : orderContents) {
                         priceTotal += e.getPrice();
                     }
@@ -89,6 +104,33 @@ public class NewOrderActivity extends AppCompatActivity {
         finalizeOrder = findViewById(R.id.finalizeOrder);
         finalizeOrder.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
+                DashItem first = orderContents.get(0);
+                String firstItem = first.getName();
+                if (firstItem.equals("null")) {
+                    LayoutInflater inflater = (LayoutInflater)
+                            getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View popupView = inflater.inflate(R.layout.popup, null);
+
+                    // create the popup window
+                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    boolean focusable = true; // lets taps outside the popup also dismiss it
+                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                    // show the popup window
+                    // which view you pass in doesn't matter, it is only used for the window tolken
+                    popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+                    // dismiss the popup window when touched
+                    popupView.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                    });
+                    return;
+                }
                 return;
             }
         });
