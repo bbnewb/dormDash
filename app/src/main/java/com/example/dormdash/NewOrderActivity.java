@@ -1,6 +1,7 @@
 package com.example.dormdash;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -116,6 +117,11 @@ public class NewOrderActivity extends AppCompatActivity {
                     int height = LinearLayout.LayoutParams.WRAP_CONTENT;
                     boolean focusable = true; // lets taps outside the popup also dismiss it
                     final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                    // adds a shadow
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        popupWindow.setElevation(20);
+                    }
 
                     // show the popup window
                     // which view you pass in doesn't matter, it is only used for the window tolken
