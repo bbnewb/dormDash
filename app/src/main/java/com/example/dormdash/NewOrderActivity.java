@@ -135,9 +135,16 @@ public class NewOrderActivity extends AppCompatActivity {
                             return true;
                         }
                     });
-                    return;
+                } else {
+                    finalizeOrder = findViewById(R.id.finalizeOrder);
+                    finalizeOrder.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(final View v) {
+                            Intent intent = new Intent(NewOrderActivity.this, FinalizeOrderAndPay.class);
+                            intent.putExtra("orderList", orderContents);
+                            startActivity(intent);
+                        }
+                    });
                 }
-                return;
             }
         });
     }
