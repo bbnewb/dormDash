@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".FinalizeOrderAndPay"
+            android:label="@string/title_activity_finalize_order_and_pay"
+            android:parentActivityName=".NewOrderActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dormdash.NewOrderActivity" />
+        </activity>
+        <activity
             android:name=".NewOrderActivity"
             android:label="@string/title_activity_new_order"
             android:parentActivityName=".DashingActivity"

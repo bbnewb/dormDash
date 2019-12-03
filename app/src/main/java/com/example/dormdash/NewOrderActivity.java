@@ -31,7 +31,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class NewOrderActivity extends AppCompatActivity {
 
-    private ArrayList<DashItem> orderContents;
+    ArrayList<DashItem> orderContents;
 
     CheckBox hamborger;
     CheckBox cheeseBorger;
@@ -57,12 +57,11 @@ public class NewOrderActivity extends AppCompatActivity {
     }
 
     public void newOrder() {
-        double total = 0;
+        double total = 0.00;
         orderContents = new ArrayList<>(0);
         if (hamborger.isChecked() || cheeseBorger.isChecked() || bean.isChecked() || doubleHamborger.isChecked()) {
             if (hamborger.isChecked()) {
                 orderContents.add(new DashItem("Hamburger", 2.99));
-                hamborger.setChecked(false);
             }
             if (cheeseBorger.isChecked()) {
                 orderContents.add(new DashItem("cheese", 2.3));
@@ -74,7 +73,7 @@ public class NewOrderActivity extends AppCompatActivity {
                 orderContents.add(new DashItem("2Hamburger", 7.99));
             }
             for (DashItem e : orderContents) {
-                total = e.getPrice();
+                total += e.getPrice();
             }
             EditText e = findViewById(R.id.runningTotal);
             Double t = new Double(total);
@@ -84,9 +83,9 @@ public class NewOrderActivity extends AppCompatActivity {
         finalizeOrder = findViewById(R.id.finalizeOrder);
         finalizeOrder.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
-                if (hamborger.isChecked()) {
-
-                }
+                Intent intent = new Intent(NewOrderActivity.this,  FinalizeOrderAndPay.class);
+                intent.putExtra("orderList", orderContents);
+                startActivity(intent);
             }
         });
     }
