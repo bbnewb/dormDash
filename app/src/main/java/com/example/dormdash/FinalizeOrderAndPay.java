@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +19,7 @@ import java.util.List;
 public class FinalizeOrderAndPay extends AppCompatActivity {
 
 
-    Bundle extras = getIntent().getExtras();
-    List<DashItem> orderList = (ArrayList) extras.get("orderList");
+    List<DashItem> orderList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,15 @@ public class FinalizeOrderAndPay extends AppCompatActivity {
         setContentView(R.layout.activity_finalize_order_and_pay);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Bundle extras = getIntent().getExtras();
+        orderList = (ArrayList) extras.get("orderList");
+        EditText cost = findViewById(R.id.editText);
+        double total = 0.00;
+        for (DashItem e : orderList) {
+            total += e.getPrice();
+        }
+        Double totalWrapped = new Double(total);
+        cost.setText(totalWrapped.toString());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
