@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         // Work on it will start in Checkpoint 1
         Button goodbye = findViewById(R.id.dormDash);
 
+
+
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.sample);
 
         goodbye.setOnClickListener(new View.OnClickListener() {
