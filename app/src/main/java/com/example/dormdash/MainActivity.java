@@ -1,7 +1,11 @@
 package com.example.dormdash;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,8 +23,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import static com.example.dormdash.Notifications.CHANNEL_FOODALERT;
 
 public class MainActivity extends AppCompatActivity {
+    private NotificationManagerCompat notificationManager;
+    private EditText title;
+    private EditText message;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -33,18 +44,21 @@ public class MainActivity extends AppCompatActivity {
         Button goodbye = findViewById(R.id.dormDash);
 
 
-
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.sample);
+        notificationManager = NotificationManagerCompat.from(this);
+        title = findViewById(R.id.welcome);
+        message = findViewById(R.id.welcome2);
 
         goodbye.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
-                //mp.start();
+                mp.start();
                 startActivity(new Intent(MainActivity.this, DashingActivity.class));
             }
         });
         Button hi = findViewById(R.id.diningHall);
         hi.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
+                sendOnFoodChannel(v);
                 startActivity(new Intent(MainActivity.this, DiningHallActivity.class));
             }
         });
@@ -54,7 +68,19 @@ public class MainActivity extends AppCompatActivity {
         // End this activity so that it's removed from the history
         // Otherwise pressing the back button in the game would come back to a blank screen here
     }
+    public void sendOnFoodChannel(View view) {
+        String t = title.getText().toString();
+        String m = message.getText().toString();
 
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_FOODALERT)
+                .setSmallIcon(R.drawable.ic_one)
+                .setContentTitle("het")
+                .setContentText("meh")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.EXTRA_INFO_TEXT)
+                .build();
+        notificationManager.notify(1, notification);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
