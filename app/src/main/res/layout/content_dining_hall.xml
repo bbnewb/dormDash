@@ -8,131 +8,107 @@
     tools:context=".DiningHallActivity"
     tools:showIn="@layout/activity_dining_hall">
 
+    <TextView
+        android:id="@+id/promptText"
+        android:layout_width="395dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="202dp"
+        android:layout_marginEnd="56dp"
+        android:lineSpacingExtra="10sp"
+        android:text="Alert me when the dining halls are serving:"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/itemInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/itemInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="26dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="(food item)"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/confirmList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/promptText"
+        tools:autofillHints="Food Item" />
+
     <Button
         android:id="@+id/confirmList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="599dp"
-        android:layout_marginEnd="63dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="314dp"
         android:text="confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/burgers"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <CheckBox
-        android:id="@+id/pizza"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="129dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="216dp"
-        android:layout_marginBottom="22dp"
-        android:text="Pizza"
-        app:layout_constraintBottom_toTopOf="@+id/stirFry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/promptText"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/promptText"
-        android:layout_width="299dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="205dp"
-        android:layout_marginBottom="64dp"
-        android:text="alert me when dining halls are serving:"
-        app:layout_constraintBottom_toTopOf="@+id/pizza"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <CheckBox
-        android:id="@+id/stirFry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="321dp"
-        android:text="stirfry"
-        app:layout_constraintBottom_toTopOf="@+id/chicken"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pizza" />
-
-    <CheckBox
-        android:id="@+id/burgers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="200dp"
-        android:text="Burgers"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chicken" />
+        app:layout_constraintTop_toBottomOf="@+id/itemInput" />
 
     <CheckBox
         android:id="@+id/chicken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginEnd="309dp"
-        android:text="Chicken"
+        android:layout_marginTop="123dp"
+        android:layout_marginEnd="158dp"
+        android:layout_marginBottom="152dp"
+        android:text="CheckBox"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/stirFry"
+        app:layout_constraintTop_toBottomOf="@+id/confirmList" />
+
+    <CheckBox
+        android:id="@+id/stirFry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="123dp"
+        android:layout_marginBottom="152dp"
+        android:text="CheckBox"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/chicken"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmList" />
+
+    <CheckBox
+        android:id="@+id/pizza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="35dp"
+        android:text="CheckBox"
         app:layout_constraintBottom_toTopOf="@+id/burgers"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stirFry" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/chicken"
+        app:layout_constraintTop_toBottomOf="@+id/confirmList" />
 
-    <Button
-        android:id="@+id/button"
+    <CheckBox
+        android:id="@+id/burgers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginBottom="31dp"
-        android:text="button"
-        app:layout_constraintBottom_toTopOf="@+id/confirmList"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="115dp"
+        android:text="CheckBox"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/chicken" />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="261dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="35dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/editText5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/promptText" />
-
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="255dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="214dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="hello"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/chicken"
+        app:layout_constraintTop_toBottomOf="@+id/confirmList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

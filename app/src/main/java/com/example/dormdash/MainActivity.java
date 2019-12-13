@@ -23,6 +23,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -30,7 +32,7 @@ import static com.example.dormdash.Notifications.CHANNEL_FOODALERT;
 
 public class MainActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
-    private EditText title;
+    private TextView title;
     private EditText message;
 
     @Override
@@ -44,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         Button goodbye = findViewById(R.id.dormDash);
 
 
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.sample);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.positive_menu_click);
+
         notificationManager = NotificationManagerCompat.from(this);
         title = findViewById(R.id.welcome);
-        message = findViewById(R.id.welcome2);
 
         goodbye.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         Button hi = findViewById(R.id.diningHall);
         hi.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
+                mp.start();
                 sendOnFoodChannel(v);
                 startActivity(new Intent(MainActivity.this, DiningHallActivity.class));
             }
@@ -69,17 +72,20 @@ public class MainActivity extends AppCompatActivity {
         // Otherwise pressing the back button in the game would come back to a blank screen here
     }
     public void sendOnFoodChannel(View view) {
-        String t = title.getText().toString();
-        String m = message.getText().toString();
+        //String t = title.getText().toString();
+        //String m = message.getText().toString();
+
+        final MediaPlayer notifSound = MediaPlayer.create(this, R.raw.sharp_echo);
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_FOODALERT)
                 .setSmallIcon(R.drawable.ic_one)
-                .setContentTitle("het")
-                .setContentText("meh")
+                .setContentTitle("Your Favorite Food Is Being Served!!")
+                .setContentText("Chicken Wings @ Dinner")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.EXTRA_INFO_TEXT)
                 .build();
         notificationManager.notify(1, notification);
+        notifSound.start();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

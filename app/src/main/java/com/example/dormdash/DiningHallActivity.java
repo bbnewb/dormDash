@@ -1,34 +1,31 @@
 package com.example.dormdash;
 
-import android.app.Notification;
-import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import com.example.*;
 import java.util.ArrayList;
-
-import static com.example.dormdash.Notifications.CHANNEL_FOODALERT;
 
 
 public class DiningHallActivity extends AppCompatActivity {
 
-    private ArrayList<String> foodListToNotify;
+    //private ArrayList<String> foodListToNotify;
     CheckBox burger;
     CheckBox pizza;
     CheckBox stir;
     CheckBox chicken;
+    EditText input;
+    TextView prompt;
 
 
     @Override
@@ -38,28 +35,55 @@ public class DiningHallActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        prompt = findViewById(R.id.promptText);
+        input = findViewById(R.id.itemInput);
+
         burger = findViewById(R.id.burgers);
         pizza = findViewById(R.id.pizza);
         stir = findViewById(R.id.stirFry);
         chicken = findViewById(R.id.chicken);
+
         Button button = findViewById(R.id.confirmList);
-        button.setOnClickListener(u -> generateNotificationList());
+
+        burger.setVisibility(View.INVISIBLE);
+        pizza.setVisibility(View.INVISIBLE);
+        stir.setVisibility(View.INVISIBLE);
+        chicken.setVisibility(View.INVISIBLE);
+
+        final MediaPlayer confirmed = MediaPlayer.create(this, R.raw.order_confirmed);
+
+
+//        Context c = getApplicationContext();
+//        MainActivity b = new MainActivity(this);
+
+        button.setOnClickListener((u) -> {
+            confirmed.start();
+            generateNotificationList();
+
+
+            //b.sendOnFoodChannel(View view);
+
+
+            //MainActivity.sendOnFoodChannel(u);
+        });
+
+
     }
+
     private void generateNotificationList() {
-
         ArrayList<String> toBeList = new ArrayList<>(0);
-       if (burger.isChecked()) {
-           toBeList.add("burger");
-       }
-       if (pizza.isChecked()) {
-           toBeList.add("pizza");
-       }
-       if (stir.isChecked()) {
-           toBeList.add("stir");
-       }
-       if (chicken.isChecked()) {
-           toBeList.add("chicken");
-       }
+        if (burger.isChecked()) {
+            toBeList.add("burger");
+        }
+        if (pizza.isChecked()) {
+            toBeList.add("pizza");
+        }
+        if (stir.isChecked()) {
+            toBeList.add("stir");
+        }
+        if (chicken.isChecked()) {
+            toBeList.add("chicken");
+        }
     }
-
 }

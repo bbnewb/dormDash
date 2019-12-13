@@ -1,6 +1,7 @@
 package com.example.dormdash;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -56,9 +57,14 @@ public class NewOrderActivity extends AppCompatActivity {
         doubleHamborger = findViewById(R.id.doubleBurger);
         Button subTotal = findViewById(R.id.subtotal);
         subTotal.setOnClickListener(v -> newOrder());
-        Intent intent = new Intent(NewOrderActivity.this, End.class);
+
+        final MediaPlayer confirmed = MediaPlayer.create(this, R.raw.order_confirmed);
+
         finalizeOrder = findViewById(R.id.finalizeOrder);
-        finalizeOrder.setOnClickListener(u -> startActivity(intent));
+        finalizeOrder.setOnClickListener((u) -> {
+            confirmed.start();
+            startActivity(new Intent(NewOrderActivity.this, End.class));
+        });
 
     }
 
